@@ -1,0 +1,17 @@
+version: : 3.8
+services:
+  postgres-logistics:
+    image: postgres:13.2
+    container_name: postgres-logistics
+    restart: always
+    environment:
+      POSTGRES_USER: logistics
+      POSTGRES_PASSWORD: logistics
+      POSTGRES_DB: logistics
+    volumes:
+      - ./postgres-logistics:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    command: [ "postgres", "-c", "log_statement=all" ]
+    networks:
+      - logistics-network
