@@ -17,10 +17,16 @@ services:
       - logistics_network
   
   logistics-app:
-    image: cosmtrek/air
+    image: cosmtrek/air:latest
     working_dir: /logistics
     ports:
       - 8181:8181
+    environment:
+      POSTGRES_USER: logistics
+      POSTGRES_PASSWORD: logistics
+      POSTGRES_DB: logistics
+      POSTGRES_HOST: postgres-logistics
+      POSTGRES_PORT: 5432
     volumes:
       - ./logistics:/logistics
     networks:
