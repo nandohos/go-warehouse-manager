@@ -1,4 +1,4 @@
-version: : 3.8
+version: "3.8"
 services:
   postgres-logistics:
     image: postgres:13.2
@@ -14,4 +14,18 @@ services:
       - 5432:5432
     command: [ "postgres", "-c", "log_statement=all" ]
     networks:
-      - logistics-network
+      - logistics_network
+  
+  logistics-app:
+    image: cosmtrek/air
+    working_dir: /app_logistics
+    ports:
+      - 8181:8181
+    volumes:
+      - ./logistics:/app_logistics
+    networks:
+      - logistics_network
+
+networks:
+  logistics_network:
+    driver: bridge
