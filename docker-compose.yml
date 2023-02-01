@@ -1,15 +1,15 @@
 version: "3.8"
 services:
   postgres-logistics:
-    image: postgres:13.2
+    image: postgres:15.1-alpine
     container_name: postgres-logistics
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: logistics
       POSTGRES_PASSWORD: logistics
       POSTGRES_DB: logistics
     volumes:
-      - ./postgres-logistics:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     ports:
       - 5432:5432
     command: [ "postgres", "-c", "log_statement=all" ]
@@ -18,13 +18,17 @@ services:
   
   logistics-app:
     image: cosmtrek/air
-    working_dir: /app_logistics
+    working_dir: /logistics
     ports:
       - 8181:8181
     volumes:
-      - ./logistics:/app_logistics
+      - ./logistics:/logistics
     networks:
       - logistics_network
+
+volumes:
+  db:
+    driver: local
 
 networks:
   logistics_network:
