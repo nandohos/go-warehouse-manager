@@ -20,11 +20,7 @@ func Inject(ds *dataSources) (*gin.Engine, error) {
 		R:               router,
 		TruckController: truckController,
 	})
-	//truckRoutes := router.Group("trucks")
-	//{
-	//	truckRoutes.GET("/registration", truckController.Get)
-	//	truckRoutes.POST("/create", truckController.Create)
-	//}
+
 	return router, nil
 
 }
