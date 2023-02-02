@@ -23,7 +23,7 @@ func NewTruckRouter(c *TruckRouterConfig) {
 	}
 
 	// Create group for truck routes
-	g := c.R.Group("/trucks")
+	g := c.R.Group("trucks")
 
 	g.GET("/registration", h.TruckController.Get)
 	g.POST("/create", h.TruckController.Create)

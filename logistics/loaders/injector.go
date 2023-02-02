@@ -12,10 +12,19 @@ func Inject(ds *dataSources) (*gin.Engine, error) {
 
 	router := gin.Default()
 
+	// Database Sources
 	db := ds.Database
+
+	//Injecting Repositories
 	truckRepository := repositories.NewTruckRepository(db)
+
+	//Injecting Services
 	truckService := services.NewTruckService(truckRepository)
+
+	//Injecting Controllers
 	truckController := controllers.NewTruckController(truckService)
+
+	//Injecting Routes
 	routes.NewTruckRouter(&routes.TruckRouterConfig{
 		R:               router,
 		TruckController: truckController,
