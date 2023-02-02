@@ -15,7 +15,7 @@ import (
 func main() {
 	log.Println("Starting Logistics Service")
 
-	// Initialie data sources
+	// Initialize data sources
 	ds, err := loaders.InitDatabase()
 	if err != nil {
 		log.Fatalf("Failed to initialize data sources: %v\n", err)
